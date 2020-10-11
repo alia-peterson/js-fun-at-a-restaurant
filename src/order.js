@@ -24,13 +24,12 @@ return orderArrayItems.join(', ')
 */
 
 function searchOrder(orderArray, orderItem) {
-  let orderIncludesItem = false
   for (var i = 0; i < orderArray.length; i++) {
     if (orderArray[i].item.includes(orderItem)) {
-      orderIncludesItem = true
+      return true
     }
   }
-  return orderIncludesItem
+  return false
 }
 
 module.exports = {
