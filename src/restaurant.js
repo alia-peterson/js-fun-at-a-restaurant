@@ -17,19 +17,31 @@ function addMenuItem(restaurantName, menuItem) {
 }
 
 function removeMenuItem(restaurantName, menuItem, menuItemType) {
-  const inMenu = restaurantName.menus[menuItemType].some(food => food.name === menuItem)
-  if (inMenu) {
-    restaurantName.menus[menuItemType].pop()
-    return `No one is eating our ${menuItem} - it has been removed from the ${menuItemType} menu!`
-  } else {
-    return `Sorry, we don't sell ${menuItem}, try adding a new recipe!`
+  const menuArray = restaurantName.menus[menuItemType]
+  const indexOfMenuItem = menuArray.indexOf(menuItem)
+
+  for (var i = 0; i < menuArray.length; i++) {
+    if (menuArray[i].name === menuItem) {
+      menuArray.splice(indexOfMenuItem, 1)
+      return `No one is eating our ${menuItem} - it has been removed from the ${menuItemType} menu!`
+    }
   }
+  return `Sorry, we don't sell ${menuItem}, try adding a new recipe!`
 }
 
-// similar to the order.js exercise, i found an existing function that uses
-// arrow functions, hopefully that's okay! the alternative would have been
-// a for loop which would look at all objects in the array and check if
-// any of the object.name's === menuItem
+// function removeMenuItem(restaurantName, menuItem, menuItemType) {
+//   const inMenu = restaurantName.menus[menuItemType].some(food => food.name === menuItem)
+//   const menuArray = restaurantName.menus[menuItemType]
+//   const indexOfMenuItem = menuArray.indexOf(menuItem)
+//
+//   if (inMenu) {
+//     menuArray.splice(indexOfMenuItem - 1, 1)
+//     return `No one is eating our ${menuItem} - it has been removed from the ${menuItemType} menu!`
+//   } else {
+//     return `Sorry, we don't sell ${menuItem}, try adding a new recipe!`
+//   }
+// }
+
 
 module.exports = {
   createRestaurant,
